@@ -1,98 +1,113 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { experience } from "@/data/resume";
+import React from "react";
+import { motion } from "framer-motion";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
+interface ExperienceItem {
+  id: string;
+  role: string;
+  company: string;
+  period: string;
+  description: string;
+  highlights: string[];
 }
 
-export default function Experience() {
-  const trackRef = useRef<HTMLDivElement>(null);
+const experiencesData: ExperienceItem[] = [
+  {
+    id: "1",
+    role: "Sales Development Representative & QA Specialist",
+    company: "Enterprise Ecosystems",
+    period: "2018 - Present",
+    description: "Driving enterprise sales strategies while leveraging extensive quality assurance expertise to ensure high-performance delivery across digital systems.",
+    highlights: [
+      "Over 7.5 years of comprehensive experience spanning manual and automation testing.",
+      "Successfully managed enterprise sales pipelines, client relationships, and target execution.",
+      "Contributed to high-growth milestones across prominent platforms like Amazon and BYJU'S."
+    ],
+  },
+  {
+    id: "2",
+    role: "Quality Assurance & Technical Operations",
+    company: "Amazon, BYJU'S, Square Yards & Webtel Electrosoft",
+    period: "Prior Experience",
+    description: "Spearheaded rigorous testing frameworks, release cycles, and quality engineering initiatives to maintain elite system standards.",
+    highlights: [
+      "Implemented automated test suites that drastically reduced bug leakage and deployment friction.",
+      "Collaborated with cross-functional product and engineering teams to streamline user flows.",
+      "Optimized operational workflows to improve overall platform stability and turnaround time."
+    ],
+  },
+];
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const stages = gsap.utils.toArray<HTMLElement>(".stage-item");
-      stages.forEach((stage) => {
-        gsap.fromTo(
-          stage,
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: stage,
-              start: "top 85%",
-            },
-          }
-        );
-      });
-
-      gsap.fromTo(
-        ".track-line",
-        { scaleY: 0 },
-        {
-          scaleY: 1,
-          transformOrigin: "top",
-          ease: "none",
-          scrollTrigger: {
-            trigger: trackRef.current,
-            start: "top 70%",
-            end: "bottom 80%",
-            scrub: 1,
-          },
-        }
-      );
-    }, trackRef);
-
-    return () => ctx.revert();
-  }, []);
-
+export default function ExperienceSection() {
   return (
-    <section id="experience" className="relative py-32">
-      <div className="mx-auto max-w-5xl px-6">
-        <div className="mb-16 max-w-xl">
-          <p className="section-eyebrow">Career Pipeline</p>
-          <h2 className="font-display text-4xl md:text-5xl font-semibold">Stage by stage.</h2>
+    <section className="py-24 px-6 lg:px-12 bg-slate-950 text-white relative">
+      <div className="max-w-4xl mx-auto space-y-16">
+        
+        {/* Section Header */}
+        <div className="text-center space-y-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs text-indigo-400 font-medium tracking-wide uppercase"
+          >
+            Professional Journey
+          </motion.div>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-3xl sm:text-5xl font-extrabold tracking-tight"
+          >
+            A Track Record of <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Excellence</span>.
+          </motion.h2>
         </div>
 
-        <div ref={trackRef} className="relative pl-10">
-          <div className="track-line absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-neon-amber via-neon-cyan to-neon-violet" />
+        {/* Timeline Container */}
+        <div className="relative border-l border-slate-800 ml-4 sm:ml-8 space-y-12">
+          {experiencesData.map((item, index) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              className="relative pl-6 sm:pl-8 group"
+            >
+              {/* Timeline Dot */}
+              <div className="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full bg-indigo-500 ring-4 ring-slate-950 group-hover:scale-125 transition-transform" />
 
-          {experience.map((role, i) => (
-            <div key={role.role} className="stage-item relative pb-16 last:pb-0">
-              <span
-                className={`absolute -left-[42px] top-1 w-3.5 h-3.5 rounded-full border-2 ${
-                  i === 0
-                    ? "bg-neon-amber border-neon-amber shadow-glow-amber"
-                    : "bg-void border-white/30"
-                }`}
-              />
-              <div className="glass-panel p-7">
-                <div className="flex items-center justify-between flex-wrap gap-2 mb-2">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-neon-amber/80">
-                    {role.tag}
+              <div className="p-6 sm:p-8 rounded-2xl bg-slate-900/60 backdrop-blur-xl border border-slate-800 space-y-4 hover:border-indigo-500/50 transition-all shadow-xl">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-100">{item.role}</h3>
+                    <p className="text-sm font-medium text-indigo-400">{item.company}</p>
+                  </div>
+                  <span className="text-xs font-mono px-3 py-1 rounded-full bg-slate-950 border border-slate-800 text-cyan-400 w-fit">
+                    {item.period}
                   </span>
-                  <span className="font-mono text-xs text-white/40">{role.dates}</span>
                 </div>
-                <h3 className="font-display text-2xl font-semibold mb-1">{role.role}</h3>
-                <p className="text-sm text-white/50 mb-5">{role.company}</p>
-                <ul className="space-y-2.5">
-                  {role.bullets.map((b, bi) => (
-                    <li key={bi} className="text-sm text-white/70 leading-relaxed pl-4 relative">
-                      <span className="absolute left-0 text-neon-cyan/70">—</span>
-                      {b}
+
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  {item.description}
+                </p>
+
+                <ul className="space-y-2 pt-2 border-t border-slate-800/80">
+                  {item.highlights.map((highlight, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-300">
+                      <span className="text-indigo-400 mt-0.5">▸</span>
+                      <span>{highlight}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );
