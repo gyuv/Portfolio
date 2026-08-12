@@ -1,27 +1,37 @@
+import React from "react";
 import Navbar from "@/components/Navbar";
+import SceneBackground from "@/components/SceneBackground";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
-import Skills from "@/components/Skills";
-import Projects from "@/components/Projects";
-import Experience from "@/components/Experience";
-import Education from "@/components/Education";
-import Achievements from "@/components/Achievements";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
+import AboutSection from "@/components/AboutSection";
+import ExperienceSection from "@/components/ExperienceSection";
+import ProjectsSection from "@/components/ProjectsSection";
+import SkillsSection from "@/components/SkillsSection";
+import EducationSection from "@/components/EducationSection";
+import ContactSection from "@/components/ContactSection";
+import AIChatWidget from "@/components/AIChatWidget";
 
 export default function Home() {
   return (
-    <main className="relative">
+    <div className="min-h-screen bg-slate-950 text-white relative selection:bg-indigo-500 selection:text-white">
+      {/* Immersive 3D Particle Background */}
+      <SceneBackground />
+
+      {/* Global Navigation Bar */}
       <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Education />
-      <Achievements />
-      <Contact />
-      <Footer />
-    </main>
+
+      {/* Main Content Sections */}
+      <main className="relative z-10 flex flex-col">
+        <Hero />
+        <AboutSection />
+        <ExperienceSection />
+        <ProjectsSection />
+        <SkillsSection />
+        <EducationSection />
+        <ContactSection />
+      </main>
+
+      {/* Floating Interactive AI Assistant */}
+      <AIChatWidget />
+    </div>
   );
 }
