@@ -1,0 +1,36 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0B0E14"/>
+      <stop offset="100%" stop-color="#05070C"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8B7CF6" stop-opacity="0.25"/>
+      <stop offset="50%" stop-color="#5CD6C0" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#C9A45C" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <rect width="1600" height="900" fill="url(#glow)" opacity="0.5"/>
+  <!-- abstract skyline silhouette representing Chennai -->
+  <g fill="#111623" opacity="0.9">
+    <rect x="60" y="560" width="70" height="340"/>
+    <rect x="150" y="480" width="55" height="420"/>
+    <rect x="220" y="600" width="90" height="300"/>
+    <rect x="330" y="420" width="60" height="480"/>
+    <rect x="410" y="520" width="100" height="380"/>
+    <rect x="530" y="380" width="50" height="520"/>
+    <rect x="600" y="500" width="80" height="400"/>
+    <rect x="700" y="440" width="65" height="460"/>
+    <rect x="790" y="560" width="110" height="340"/>
+    <rect x="920" y="400" width="55" height="500"/>
+    <rect x="1000" y="500" width="90" height="400"/>
+    <rect x="1110" y="460" width="60" height="440"/>
+    <rect x="1190" y="580" width="100" height="320"/>
+    <rect x="1310" y="440" width="55" height="460"/>
+    <rect x="1390" y="520" width="90" height="380"/>
+    <rect x="1500" y="580" width="60" height="320"/>
+  </g>
+  <circle cx="1250" cy="220" r="120" fill="#C9A45C" opacity="0.06"/>
+  <circle cx="300" cy="180" r="160" fill="#5CD6C0" opacity="0.05"/>
+</svg>
