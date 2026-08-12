@@ -1,47 +1,95 @@
 "use client";
 
-import Image from "next/image";
+import React from "react";
 import { motion } from "framer-motion";
-import { education } from "@/data/resume";
 
-export default function Education() {
+interface EducationItem {
+  id: string;
+  degree: string;
+  institution: string;
+  period: string;
+  description: string;
+  badge: string;
+}
+
+const educationData: EducationItem[] = [
+  {
+    id: "1",
+    degree: "Professional Academic Foundation",
+    institution: "Accredited Institution",
+    period: "Completed",
+    description: "Built a robust analytical and technical foundation supporting complex problem-solving and quality assurance methodologies.",
+    badge: "Academics",
+  },
+  {
+    id: "2",
+    degree: "Enterprise Certifications & Training",
+    institution: "Industry Standards",
+    period: "Continuous",
+    description: "Ongoing professional upskilling in automation testing frameworks, sales strategy optimization, and enterprise operations.",
+    badge: "Certifications",
+  },
+];
+
+export default function EducationSection() {
   return (
-    <section id="education" className="relative py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-16 max-w-xl">
-          <p className="section-eyebrow">Foundation</p>
-          <h2 className="font-display text-4xl md:text-5xl font-semibold">
-            Education & recognition.
-          </h2>
+    <section className="py-24 px-6 lg:px-12 bg-slate-950 text-white relative">
+      <div className="max-w-4xl mx-auto space-y-16">
+        
+        {/* Section Header */}
+        <div className="text-center space-y-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs text-indigo-400 font-medium tracking-wide uppercase"
+          >
+            Credentials & Background
+          </motion.div>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-3xl sm:text-5xl font-extrabold tracking-tight"
+          >
+            Education & <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Continuous Learning</span>.
+          </motion.h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {education.map((edu, i) => (
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {educationData.map((item, index) => (
             <motion.div
-              key={edu.school}
-              initial={{ opacity: 0, y: 30 }}
+              key={item.id}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="glass-panel overflow-hidden group"
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
+              className="p-8 rounded-2xl bg-slate-900/60 backdrop-blur-xl border border-slate-800 space-y-4 hover:border-indigo-500/50 transition-all shadow-xl flex flex-col justify-between"
             >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <Image
-                  src={edu.image}
-                  alt={edu.school}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent" />
-              </div>
-              <div className="p-7">
-                <h3 className="font-display text-xl font-semibold mb-1">{edu.degree}</h3>
-                <p className="text-sm text-white/50">{edu.school}</p>
-                <p className="font-mono text-xs text-neon-cyan/70 mt-3">{edu.dates}</p>
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono px-3 py-1 rounded-full bg-slate-950 border border-slate-800 text-indigo-400">
+                    {item.badge}
+                  </span>
+                  <span className="text-xs font-mono text-cyan-400">
+                    {item.period}
+                  </span>
+                </div>
+
+                <h3 className="text-xl font-bold text-slate-100">{item.degree}</h3>
+                <p className="text-xs font-semibold text-indigo-300">{item.institution}</p>
+
+                <p className="text-sm text-slate-400 leading-relaxed pt-2">
+                  {item.description}
+                </p>
               </div>
             </motion.div>
           ))}
         </div>
+
       </div>
     </section>
   );
