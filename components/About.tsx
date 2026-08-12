@@ -1,74 +1,54 @@
 "use client";
 
-import Image from "next/image";
+import React from "react";
 import { motion } from "framer-motion";
-import { profile } from "@/data/resume";
 
-export default function About() {
+export default function AboutSection() {
   return (
-    <section id="about" className="relative py-32 overflow-hidden">
-      <div className="absolute inset-0 opacity-40">
-        <Image
-          src="/images/city-chennai.svg"
-          alt="Chennai skyline"
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-void via-void/80 to-void" />
-      </div>
+    <section className="py-24 px-6 lg:px-12 bg-slate-950 text-white relative">
+      <div className="max-w-4xl mx-auto space-y-16">
+        
+        {/* Section Header */}
+        <div className="text-center space-y-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs text-indigo-400 font-medium tracking-wide uppercase"
+          >
+            About Me
+          </motion.div>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-3xl sm:text-5xl font-extrabold tracking-tight"
+          >
+            Engineering Quality, <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Driving Sales</span>.
+          </motion.h2>
+        </div>
 
-      <div className="relative mx-auto max-w-6xl px-6 grid md:grid-cols-2 gap-16 items-center">
+        {/* Content Card */}
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7 }}
-          className="relative"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="p-8 sm:p-12 rounded-3xl bg-slate-900/60 backdrop-blur-xl border border-slate-800 shadow-2xl space-y-6 text-slate-300 leading-relaxed text-base sm:text-lg"
         >
-          <div className="absolute -inset-4 rounded-3xl bg-gradient-to-tr from-neon-cyan/20 to-neon-violet/20 blur-2xl" />
-          <div className="relative glass-panel p-2 rounded-3xl overflow-hidden">
-            <div className="relative aspect-square rounded-2xl overflow-hidden">
-              <Image
-                src={profile.photo}
-                alt={profile.name}
-                fill
-                sizes="480px"
-                className="object-cover grayscale-[15%]"
-              />
-            </div>
-          </div>
+          <p>
+            I am a dedicated professional blending a robust technical foundation with high-impact sales leadership[cite: 1]. With over <strong className="text-white">7.5 years of comprehensive experience</strong> in quality assurance, I specialize in both manual and automation testing frameworks that ensure elite reliability across modern software systems[cite: 1].
+          </p>
+          <p>
+            My career journey spans prominent enterprise ecosystems including <strong className="text-indigo-400">Amazon, BYJU&apos;S, Square Yards, and Webtel Electrosoft</strong>[cite: 1]. Beyond technical testing, I leverage my expertise as a Sales Development Representative to execute targeted sales strategies, cultivate critical client relationships, and consistently achieve aggressive growth milestones[cite: 1].
+          </p>
+          <p>
+            This unique intersection of engineering rigor and commercial acumen allows me to bridge technical execution with business growth seamlessly[cite: 1].
+          </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-        >
-          <p className="section-eyebrow">About</p>
-          <h2 className="font-display text-4xl md:text-5xl font-semibold mb-8 leading-tight">
-            Based in Chennai.
-            <br />
-            <span className="text-white/50">Building client relationships that close.</span>
-          </h2>
-          <div className="space-y-5 text-white/70 leading-relaxed">
-            {profile.summary.map((line, i) => (
-              <p key={i}>{line}</p>
-            ))}
-          </div>
-
-          <div className="mt-10 flex flex-wrap gap-3">
-            <span className="font-mono text-xs px-4 py-2 rounded-full glass-panel text-white/70">
-              {profile.location}
-            </span>
-            <a
-              href={`mailto:${profile.email}`}
-              className="font-mono text-xs px-4 py-2 rounded-full glass-panel text-white/70 hover:text-neon-cyan transition-colors"
-            >
-              {profile.email}
-            </a>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
