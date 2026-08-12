@@ -1,92 +1,111 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import Image from "next/image";
+import React from "react";
 import { motion } from "framer-motion";
-import { profile } from "@/data/resume";
-
-const SceneBackground = dynamic(() => import("./SceneBackground"), { ssr: false });
+import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden noise"
-    >
-      <div className="absolute inset-0 bg-void" />
-      <div className="absolute inset-0 bg-grid-glow" />
-      <SceneBackground variant="hero" />
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden px-6 lg:px-12 bg-slate-950 text-white">
+      {/* Background Glow Accents */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/20 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-[300px] h-[300px] bg-cyan-500/10 blur-[100px] rounded-full pointer-events-none" />
 
-      <div className="relative mx-auto max-w-6xl px-6 pt-32 pb-20 grid md:grid-cols-[1.1fr_0.9fr] gap-14 items-center">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <p className="section-eyebrow">Sales Manager · Webtel Electrosoft Ltd</p>
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.02] tracking-tight mb-6">
-            {profile.name.split(" ")[0]}
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-violet via-neon-cyan to-neon-amber">
-              Govindarajan
-            </span>
-          </h1>
-          <p className="text-white/60 text-lg max-w-xl mb-10 leading-relaxed">
-            {profile.summary[0]}
-          </p>
+      <div className="max-w-6xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+        
+        {/* Left Column: Typography & CTAs */}
+        <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs text-indigo-400 font-medium tracking-wide uppercase"
+          >
+            <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
+            Enterprise Sales & Technical Expertise
+          </motion.div>
 
-          <div className="flex flex-wrap gap-4 mb-14">
-            <a
-              href={`mailto:${profile.email}`}
-              className="font-mono text-xs uppercase tracking-widest px-6 py-3 rounded-full bg-white text-void font-semibold hover:shadow-glow-amber transition-shadow"
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1]"
+          >
+            Bridging <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Technology</span> & Strategic Sales.
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed"
+          >
+            Leveraging 7.5+ years of quality assurance expertise paired with high-impact sales strategies. Showcasing proven leadership across enterprise ecosystems like Amazon and BYJU&apos;s.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4"
+          >
+            <Link
+              href="/projects"
+              className="px-8 py-3.5 rounded-xl bg-indigo-600 text-white font-semibold hover:bg-indigo-500 transition-all shadow-lg shadow-indigo-600/25 active:scale-95"
             >
-              Get in touch
-            </a>
-            <a
-              href="#experience"
-              className="font-mono text-xs uppercase tracking-widest px-6 py-3 rounded-full glass-panel hover:border-neon-cyan/60 transition-colors"
+              Explore Projects
+            </Link>
+            <Link
+              href="/contact"
+              className="px-8 py-3.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 font-semibold hover:bg-slate-800 hover:text-white transition-all active:scale-95"
             >
-              View experience
-            </a>
-          </div>
+              Get in Touch
+            </Link>
+          </motion.div>
+        </div>
 
-          <div className="grid grid-cols-4 gap-4 max-w-xl">
-            {profile.stats.map((s) => (
-              <div key={s.label} className="glass-panel px-3 py-4 text-center">
-                <div className="font-display text-2xl text-neon-amber">{s.value}</div>
-                <div className="font-mono text-[10px] uppercase tracking-wide text-white/50 mt-1 leading-tight">
-                  {s.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
-          className="relative mx-auto"
-        >
-          <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-neon-violet/30 via-neon-cyan/20 to-neon-amber/20 blur-2xl animate-float" />
-          <div className="relative glass-panel p-3 rounded-[2rem] w-[300px] md:w-[360px]">
-            <div className="relative rounded-[1.5rem] overflow-hidden aspect-[4/5]">
-              <Image
-                src={profile.photo}
-                alt={profile.name}
-                fill
-                sizes="360px"
-                priority
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-void/60 via-transparent to-transparent" />
+        {/* Right Column: Interactive Core Disciplines Card */}
+        <div className="lg:col-span-5 flex justify-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="w-full max-w-md p-6 rounded-2xl bg-slate-900/60 backdrop-blur-xl border border-slate-800 shadow-2xl relative"
+          >
+            <div className="absolute -top-3 -right-3 px-3 py-1 bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-xs rounded-full font-mono">
+              Core Focus
             </div>
-          </div>
-        </motion.div>
-      </div>
 
-      <div className="absolute bottom-8 inset-x-0 flex justify-center">
-        <div className="w-px h-14 bg-gradient-to-b from-white/40 to-transparent animate-pulse" />
+            <h3 className="text-xl font-bold text-slate-100 mb-4">Professional Matrix</h3>
+            
+            <div className="space-y-3">
+              <div className="p-4 rounded-xl bg-slate-950/50 border border-slate-800/80 flex items-center justify-between">
+                <div>
+                  <h4 className="text-sm font-semibold text-slate-200">Sales Development</h4>
+                  <p className="text-xs text-slate-400">Target execution & strategy</p>
+                </div>
+                <span className="text-xs font-mono text-cyan-400">Active</span>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950/50 border border-slate-800/80 flex items-center justify-between">
+                <div>
+                  <h4 className="text-sm font-semibold text-slate-200">Quality Assurance</h4>
+                  <p className="text-xs text-slate-400">7.5+ Years Automation & Manual</p>
+                </div>
+                <span className="text-xs font-mono text-indigo-400">Expert</span>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-950/50 border border-slate-800/80 flex items-center justify-between">
+                <div>
+                  <h4 className="text-sm font-semibold text-slate-200">Enterprise Experience</h4>
+                  <p className="text-xs text-slate-400">Amazon, BYJU&apos;s & more</p>
+                </div>
+                <span className="text-xs font-mono text-emerald-400">Proven</span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
       </div>
     </section>
   );
