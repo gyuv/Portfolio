@@ -9,9 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        slate: {
-          950: "#020617",
-        },
+        canvas: "#0a0a0c",
+        surface: "#121216",
+        subtle: "#1a1a20",
+      },
+      fontFamily: {
+        sans: ["system-ui", "-apple-system", "sans-serif"],
+        mono: ["ui-monospace", "SFMono-Regular", "monospace"],
       },
     },
   },
