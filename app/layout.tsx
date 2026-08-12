@@ -1,51 +1,9 @@
-import type { Metadata } from "next";
-import { Fraunces, Inter, IBM_Plex_Mono } from "next/font/google";
+import type { Metadata } from "main";
 import "./globals.css";
-import { profile } from "@/data/resume";
-
-const display = Fraunces({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-display",
-});
-
-const sans = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-sans",
-});
-
-const mono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-mono",
-});
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://yuvarajgovindarajan.com"),
-  title: `${profile.name} — ${profile.title}`,
-  description: profile.summary[0],
-  keywords: [
-    "Yuvaraj Govindarajan",
-    "Sales Manager",
-    "B2B Software Sales",
-    "CRM",
-    "Account Management",
-    "Chennai",
-  ],
-  openGraph: {
-    title: `${profile.name} — ${profile.title}`,
-    description: profile.summary[0],
-    images: [profile.photo],
-    type: "profile",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${profile.name} — ${profile.title}`,
-    description: profile.summary[0],
-    images: [profile.photo],
-  },
-  robots: { index: true, follow: true },
+  title: "Yuvaraj | Enterprise QA Architect & Sales Leader",
+  description: "Million-dollar portfolio featuring gaming-grade aesthetics and advanced technical execution.",
 };
 
 export default function RootLayout({
@@ -54,8 +12,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
-      <body className="font-sans antialiased bg-void">{children}</body>
+    <html lang="en" className="scroll-smooth">
+      <body className="bg-[#020617] text-white selection:bg-cyan-500 selection:text-black font-sans antialiased">
+        {children}
+      </body>
     </html>
   );
 }
