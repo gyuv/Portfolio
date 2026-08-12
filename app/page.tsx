@@ -1,37 +1,24 @@
 import React from "react";
-import Navbar from "@/components/Navbar";
-import SceneBackground from "@/components/SceneBackground";
-import Hero from "@/components/Hero";
-import AboutSection from "@/components/AboutSection";
-import ExperienceSection from "@/components/ExperienceSection";
-import ProjectsSection from "@/components/ProjectsSection";
-import SkillsSection from "@/components/SkillsSection";
-import EducationSection from "@/components/EducationSection";
-import ContactSection from "@/components/ContactSection";
-import AIChatWidget from "@/components/AIChatWidget";
+import SidebarNav from "@/components/SidebarNav";
+import HeroGaming from "@/components/HeroGaming";
+import AboutSectionGaming from "@/components/AboutSectionGaming";
+import ExperienceGaming from "@/components/ExperienceGaming";
+import ProjectsGaming from "@/components/ProjectsGaming";
+import SkillsGaming from "@/components/SkillsGaming";
+import ContactGaming from "@/components/ContactGaming";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-slate-950 text-white relative selection:bg-indigo-500 selection:text-white">
-      {/* Immersive 3D Particle Background */}
-      <SceneBackground />
-
-      {/* Global Navigation Bar */}
-      <Navbar />
-
-      {/* Main Content Sections */}
-      <main className="relative z-10 flex flex-col">
-        <Hero />
-        <AboutSection />
-        <ExperienceSection />
-        <ProjectsSection />
-        <SkillsSection />
-        <EducationSection />
-        <ContactSection />
+    <div className="min-h-screen bg-[#020617] text-white">
+      <SidebarNav />
+      <main className="lg:pl-72 flex flex-col min-h-screen">
+        <HeroGaming />
+        <AboutSectionGaming />
+        <ExperienceGaming />
+        <ProjectsGaming />
+        <SkillsGaming />
+        <ContactGaming />
       </main>
-
-      {/* Floating Interactive AI Assistant */}
-      <AIChatWidget />
     </div>
   );
 }
