@@ -1,20 +1,15 @@
 import React from "react";
-import CyberBackground from "@/components/CyberBackground";
-import SidebarNav from "@/components/SidebarNav";
-import HeroGaming from "@/components/HeroGaming";
+import EditorialNav from "@/components/EditorialNav";
+import EditorialHero from "@/components/EditorialHero";
+import EditorialProjects from "@/components/EditorialProjects";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#020617] text-white relative selection:bg-cyan-500 selection:text-black font-sans">
-      {/* 3D WebGL Particle Starfield Background */}
-      <CyberBackground />
-
-      {/* Fixed Left Sidebar Navigation */}
-      <SidebarNav />
-
-      {/* Main Container Offset for Sidebar */}
-      <main className="lg:pl-80 flex flex-col min-h-screen relative z-10">
-        <HeroGaming />
+    <div className="min-h-screen bg-[#0a0a0c] text-white selection:bg-white selection:text-black">
+      <EditorialNav />
+      <main className="flex flex-col">
+        <EditorialHero />
+        <EditorialProjects />
       </main>
     </div>
   );
